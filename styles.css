@@ -30,6 +30,7 @@
 
 html {
   scroll-behavior: smooth;
+  background: var(--azul-noche);
 }
 
 body.menu-open {
@@ -42,6 +43,7 @@ body {
   line-height: 1.6;
   color: var(--blanco);
   background: var(--azul-noche);
+  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -53,12 +55,74 @@ body {
 }
 
 /* ============================================
+   BANNER COUNTDOWN
+   ============================================ */
+
+.banner-countdown {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 101;
+  background: linear-gradient(90deg, var(--azul-noche-soft) 0%, var(--azul-noche) 100%);
+  border-bottom: 1px solid rgba(163, 230, 53, 0.2);
+  padding: 10px 0;
+}
+
+.banner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.banner-text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--blanco);
+  margin: 0;
+}
+
+.banner-highlight {
+  color: var(--verde-lima);
+  font-weight: 700;
+}
+
+.countdown {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 48px;
+}
+
+.countdown-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--verde-lima);
+  line-height: 1.2;
+}
+
+.countdown-label {
+  font-size: 0.7rem;
+  color: var(--gris-texto);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
    HEADER
    ============================================ */
 
 .header {
   position: fixed;
-  top: 0;
+  top: 48px;
   left: 0;
   right: 0;
   z-index: 100;
@@ -166,10 +230,10 @@ body {
    ============================================ */
 
 .hero {
-  min-height: 100vh;
+  min-height: 75vh;
   display: flex;
   align-items: center;
-  padding: 120px 0 80px;
+  padding: 140px 0 60px;
 }
 
 .hero-inner {
@@ -498,6 +562,7 @@ body {
 /* FORMULARIO */
 .section-form {
   background: var(--azul-noche-soft);
+  padding: 60px 0;
 }
 
 /* BOTÓN FLOTANTE */
@@ -587,9 +652,28 @@ body {
 }
 
 @media (max-width: 768px) {
+  .banner-inner {
+    flex-direction: column;
+    gap: 12px;
+    padding: 8px 0;
+  }
+
+  .banner-text {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .countdown {
+    gap: 12px;
+  }
+
+  .countdown-value {
+    font-size: 1.25rem;
+  }
+
   .nav {
     position: fixed;
-    top: 72px;
+    top: 120px;
     left: 0;
     right: 0;
     bottom: auto;
