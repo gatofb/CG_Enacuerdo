@@ -46,8 +46,49 @@ function initCountdown() {
   setInterval(updateCountdown, 1000);
 }
 
+// Slider "Cómo funciona"
+function initHowSlider() {
+  const track = document.querySelector('.slider-track');
+  const slides = document.querySelectorAll('.step.slide');
+  const prevBtn = document.querySelector('.slider-prev');
+  const nextBtn = document.querySelector('.slider-next');
+  const dotsContainer = document.querySelector('.slider-dots');
+
+  if (!track || !slides.length) return;
+
+  let currentIndex = 0;
+  const total = slides.length;
+
+  function goTo(index) {
+    currentIndex = Math.max(0, Math.min(index, total - 1));
+    track.style.transform = `translateX(-${currentIndex * 20}%)`;
+    slides.forEach((s, i) => s.classList.toggle('active', i === currentIndex));
+    dotsContainer?.querySelectorAll('.slider-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === currentIndex);
+    });
+  }
+
+  // Crear dots
+  if (dotsContainer) {
+    for (let i = 0; i < total; i++) {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', `Ir al paso ${i + 1}`);
+      dot.addEventListener('click', () => goTo(i));
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  prevBtn?.addEventListener('click', () => goTo(currentIndex - 1));
+  nextBtn?.addEventListener('click', () => goTo(currentIndex + 1));
+
+  goTo(0);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initCountdown();
+  initHowSlider();
   const menuToggle = document.querySelector('.menu-toggle');
   const nav = document.querySelector('.nav');
 

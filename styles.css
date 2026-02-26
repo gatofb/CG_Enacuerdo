@@ -66,20 +66,20 @@ body {
   z-index: 101;
   background: var(--verde-lima);
   border-bottom: 1px solid rgba(15, 23, 42, 0.15);
-  padding: 6px 0;
-  min-height: 44px;
+  padding: 3px 0;
+  min-height: 22px;
 }
 
 .banner-inner {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 24px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
 .banner-text {
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   font-weight: 500;
   color: var(--azul-noche);
   margin: 0;
@@ -92,7 +92,7 @@ body {
 
 .countdown {
   display: flex;
-  gap: 16px;
+  gap: 8px;
   align-items: center;
 }
 
@@ -100,18 +100,18 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 40px;
+  min-width: 24px;
 }
 
 .countdown-value {
-  font-size: 1.2rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--azul-noche);
   line-height: 1.2;
 }
 
 .countdown-label {
-  font-size: 0.65rem;
+  font-size: 0.55rem;
   color: var(--azul-noche);
   opacity: 0.8;
   text-transform: uppercase;
@@ -124,7 +124,7 @@ body {
 
 .header {
   position: fixed;
-  top: 36px;
+  top: 28px;
   left: 0;
   right: 0;
   z-index: 100;
@@ -137,7 +137,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
+  min-height: 72px;
+  padding: 12px 0;
 }
 
 .logo {
@@ -236,7 +237,7 @@ body {
   min-height: 75dvh;
   display: flex;
   align-items: center;
-  padding: 128px 0 60px;
+  padding: 120px 0 60px;
 }
 
 .hero-inner {
@@ -359,28 +360,60 @@ body {
   font-size: 0.95rem;
 }
 
-/* CÓMO FUNCIONA */
+/* CÓMO FUNCIONA - Slider */
 .section-how {
   background: var(--azul-noche);
 }
 
-.steps {
+.how-slider-wrap {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 24px;
+  grid-template-columns: 200px 1fr;
+  gap: 40px;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.step {
+.how-slider-personaje {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.how-personaje-img {
+  max-width: 180px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.how-slider {
+  overflow: hidden;
+}
+
+.slider-track {
+  display: flex;
+  width: 500%;
+  transition: transform 0.4s ease;
+}
+
+.step.slide {
+  flex: 0 0 20%;
+  width: 20%;
   text-align: center;
-  padding: 24px 16px;
+  padding: 32px 24px;
   background: var(--azul-noche-soft);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+.step.slide.active {
+  display: block;
+}
+
 .step-img {
   width: 100%;
-  max-width: 180px;
+  max-width: 200px;
   height: auto;
   margin: 0 auto 20px;
   display: block;
@@ -388,15 +421,61 @@ body {
 }
 
 .step h3 {
-  font-size: 1rem;
+  font-size: 1.15rem;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .step p {
   color: var(--gris-texto);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   line-height: 1.5;
+}
+
+.slider-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.slider-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--verde-lima);
+  background: transparent;
+  color: var(--verde-lima);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.slider-btn:hover {
+  background: var(--verde-lima);
+  color: var(--azul-noche);
+}
+
+.slider-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.slider-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--transition);
+}
+
+.slider-dot.active {
+  background: var(--verde-lima);
+  transform: scale(1.2);
 }
 
 /* DIFERENCIALES */
@@ -645,19 +724,28 @@ body {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .steps {
-    grid-template-columns: repeat(3, 1fr);
+  .how-slider-wrap {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .how-slider-personaje {
+    order: -1;
+  }
+
+  .how-personaje-img {
+    max-width: 140px;
   }
 
   .step-img {
-    max-width: 140px;
+    max-width: 160px;
   }
 }
 
 @media (max-width: 768px) {
   .banner-countdown {
-    min-height: 72px;
-    padding: 8px 0;
+    min-height: 36px;
+    padding: 4px 0;
   }
 
   .banner-inner {
@@ -687,11 +775,11 @@ body {
   }
 
   .countdown-value {
-    font-size: 1.1rem;
+    font-size: 0.7rem;
   }
 
   .countdown-label {
-    font-size: 0.6rem;
+    font-size: 0.5rem;
   }
 
   .header {
@@ -700,7 +788,7 @@ body {
 
   .nav {
     position: fixed;
-    top: 144px;
+    top: 136px;
     left: 0;
     right: 0;
     bottom: auto;
@@ -754,6 +842,32 @@ body {
   .hero {
     padding: 164px 0 60px;
     min-height: 75dvh;
+  }
+
+  .how-slider-wrap {
+    gap: 16px;
+  }
+
+  .how-personaje-img {
+    max-width: 120px;
+  }
+
+  .step.slide {
+    padding: 24px 16px;
+  }
+
+  .step h3 {
+    font-size: 1rem;
+  }
+
+  .step p {
+    font-size: 0.85rem;
+  }
+
+  .slider-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
   }
 
   .section {
