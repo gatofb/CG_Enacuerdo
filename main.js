@@ -86,7 +86,40 @@ function initHowSlider() {
   goTo(0);
 }
 
+// Hero headline A/B - rotación aleatoria + UTM para tracking
+function initHeroHeadline() {
+  const headlines = [
+    'Lográ un acuerdo por la cuota alimentaria sin abogados, sin peleas y desde tu celular.',
+    'Basta de rogar por la cuota. Lográ un acuerdo legal desde tu celular',
+    '¿La cuota no alcanza y la justicia no llega? Resolvelo hoy mismo.',
+    'Chau discusiones por plata. Acordá la cuota de tus hijos sin pelear.'
+  ];
+
+  const headlineEl = document.getElementById('hero-headline');
+  if (!headlineEl) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const existingUtm = params.get('utm_content');
+
+  let index;
+  if (existingUtm && /^headline-[1-4]$/.test(existingUtm)) {
+    index = parseInt(existingUtm.replace('headline-', ''), 10) - 1;
+  } else {
+    index = Math.floor(Math.random() * headlines.length);
+  }
+
+  headlineEl.textContent = headlines[index];
+
+  // Agregar utm_content a la URL para que el form lo capture
+  if (!existingUtm || !/^headline-[1-4]$/.test(existingUtm)) {
+    params.set('utm_content', `headline-${index + 1}`);
+    const newUrl = window.location.pathname + '?' + params.toString() + (window.location.hash || '');
+    window.history.replaceState({}, '', newUrl);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  initHeroHeadline();
   initCountdown();
   initHowSlider();
   const menuToggle = document.querySelector('.menu-toggle');
