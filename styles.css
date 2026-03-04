@@ -686,6 +686,38 @@ body {
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-block {
+  text-align: center;
+}
+
+.footer-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--gris-texto);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.footer-link {
+  color: var(--blanco);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color var(--transition);
+}
+
+.footer-link:hover {
+  color: var(--verde-lima);
+}
+
 .footer-legal,
 .footer-copy {
   text-align: center;
@@ -900,5 +932,10 @@ body {
 
   .section-headline {
     margin-bottom: 40px;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 20px;
   }
 }
