@@ -118,38 +118,25 @@ function initHeroHeadline() {
   }
 }
 
-function initBannerScroll() {
+function initBannerHeight() {
   const banner = document.querySelector('.banner-countdown');
-  const header = document.querySelector('.header');
-  if (!banner || !header) return;
+  if (!banner) return;
 
   function updateBannerHeight() {
     const h = banner.offsetHeight;
     document.documentElement.style.setProperty('--banner-height', `${h}px`);
   }
 
-  function onScroll() {
-    const scrolled = window.scrollY > 80;
-    document.body.classList.toggle('banner-scrolled', scrolled);
-    if (!scrolled) {
-      setTimeout(updateBannerHeight, 300);
-    }
-  }
-
   updateBannerHeight();
-  window.addEventListener('resize', () => {
-    if (!document.body.classList.contains('banner-scrolled')) {
-      requestAnimationFrame(updateBannerHeight);
-    }
-  });
-  window.addEventListener('scroll', onScroll, { passive: true });
+  requestAnimationFrame(updateBannerHeight);
+  window.addEventListener('resize', updateBannerHeight);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   initHeroHeadline();
   initCountdown();
   initHowSlider();
-  initBannerScroll();
+  initBannerHeight();
   const menuToggle = document.querySelector('.menu-toggle');
   const nav = document.querySelector('.nav');
 
