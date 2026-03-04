@@ -68,6 +68,7 @@ body {
   border-bottom: 1px solid rgba(15, 23, 42, 0.15);
   padding: 3px 0;
   min-height: 22px;
+  transition: min-height 0.25s ease, padding 0.25s ease;
 }
 
 .banner-inner {
@@ -118,16 +119,52 @@ body {
   letter-spacing: 0.05em;
 }
 
+/* Banner compacto al hacer scroll */
+body.banner-scrolled .banner-countdown {
+  min-height: 28px;
+  padding: 4px 0;
+}
+
+body.banner-scrolled .banner-inner {
+  gap: 8px;
+  padding: 0 16px;
+}
+
+body.banner-scrolled .banner-text {
+  font-size: 0.65rem;
+}
+
+body.banner-scrolled .countdown {
+  gap: 6px;
+}
+
+body.banner-scrolled .countdown-item {
+  min-width: 20px;
+}
+
+body.banner-scrolled .countdown-value {
+  font-size: 0.6rem;
+}
+
+body.banner-scrolled .countdown-label {
+  font-size: 0.45rem;
+}
+
+body.banner-scrolled .header {
+  top: 36px;
+}
+
 /* ============================================
    HEADER
    ============================================ */
 
 .header {
   position: fixed;
-  top: 28px;
+  top: var(--banner-height, 28px);
   left: 0;
   right: 0;
   z-index: 100;
+  transition: top 0.25s ease;
   background: rgba(15, 23, 42, 0.9);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -786,46 +823,74 @@ body {
 
 @media (max-width: 768px) {
   .banner-countdown {
-    min-height: 36px;
-    padding: 4px 0;
+    min-height: 56px;
+    padding: 6px 0;
+    max-height: 72px;
   }
 
   .banner-inner {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 12px;
+    gap: 8px;
     padding: 4px 16px;
   }
 
   .banner-text {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     text-align: center;
     flex-basis: 100%;
     order: 1;
+    line-height: 1.2;
   }
 
   .countdown {
-    gap: 12px;
+    gap: 8px;
     order: 2;
     flex-basis: 100%;
     justify-content: center;
   }
 
   .countdown-item {
-    min-width: 36px;
+    min-width: 28px;
   }
 
   .countdown-value {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
   }
 
   .countdown-label {
-    font-size: 0.5rem;
+    font-size: 0.45rem;
   }
 
   .header {
-    top: 72px;
+    top: var(--banner-height, 72px);
+  }
+
+  body.banner-scrolled .banner-countdown {
+    min-height: 32px;
+    padding: 4px 0;
+    max-height: 40px;
+  }
+
+  body.banner-scrolled .banner-text {
+    font-size: 0.6rem;
+  }
+
+  body.banner-scrolled .countdown-item {
+    min-width: 22px;
+  }
+
+  body.banner-scrolled .countdown-value {
+    font-size: 0.55rem;
+  }
+
+  body.banner-scrolled .countdown-label {
+    font-size: 0.4rem;
+  }
+
+  body.banner-scrolled .header {
+    top: 40px;
   }
 
   .nav {
