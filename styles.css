@@ -647,12 +647,6 @@ body {
   margin: 0 auto;
 }
 
-/* FORMULARIO */
-.section-form {
-  background: var(--azul-noche-soft);
-  padding: 60px 0;
-}
-
 /* BOTÓN FLOTANTE */
 .btn-flotante {
   position: fixed;
