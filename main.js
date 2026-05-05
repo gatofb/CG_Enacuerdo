@@ -90,7 +90,7 @@ function initHowSlider() {
 function initHeroHeadline() {
   const headlines = [
     'Lográ un acuerdo por la cuota alimentaria sin abogados, sin peleas y desde tu celular.',
-    'Basta de rogar por la cuota. Lográ un acuerdo legal desde tu celular',
+    'Basta de rogar por la cuota. Lográ un acuerdo desde tu celular',
     '¿La cuota no alcanza y la justicia no llega? Resolvelo hoy mismo.',
     'Chau discusiones por plata. Acordá la cuota de tus hijos sin pelear.'
   ];
@@ -132,11 +132,45 @@ function initBannerHeight() {
   window.addEventListener('resize', updateBannerHeight);
 }
 
+function initLeadTracking() {
+  const ctaLinks = document.querySelectorAll('a[href="https://web.enacuerdo.ai/"]');
+  if (!ctaLinks.length) return;
+
+  function buildDestinationUrl() {
+    const destinationUrl = new URL('https://web.enacuerdo.ai/');
+    const currentParams = new URLSearchParams(window.location.search);
+
+    currentParams.forEach((value, key) => {
+      if (key.toLowerCase().startsWith('utm_')) {
+        destinationUrl.searchParams.set(key, value);
+      }
+    });
+
+    return destinationUrl.toString();
+  }
+
+  ctaLinks.forEach(link => {
+    link.addEventListener('click', event => {
+      if (typeof window.fbq === 'function') {
+        window.fbq('track', 'Lead');
+      }
+
+      const destination = buildDestinationUrl();
+      link.href = destination;
+
+      // Ensure navigation keeps UTM params even if browser ignores late href update.
+      event.preventDefault();
+      window.open(destination, '_blank', 'noopener,noreferrer');
+    });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initHeroHeadline();
   initCountdown();
   initHowSlider();
   initBannerHeight();
+  initLeadTracking();
   const menuToggle = document.querySelector('.menu-toggle');
   const nav = document.querySelector('.nav');
 

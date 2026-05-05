@@ -524,6 +524,22 @@ body {
   font-size: 0.9rem;
 }
 
+/* INFORMACIÓN CLAVE */
+.section-essentials {
+  padding: 56px 0;
+  background: var(--azul-noche-soft);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.section-essentials .section-headline {
+  margin-bottom: 28px;
+}
+
+.section-essentials .requirements-list {
+  max-width: 640px;
+}
+
 /* REQUISITOS */
 .section-requirements {
   background: var(--azul-noche);
